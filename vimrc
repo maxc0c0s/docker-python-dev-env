@@ -47,7 +47,7 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Auto completion
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'davidhalter/jedi-vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.

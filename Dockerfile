@@ -12,6 +12,7 @@ RUN make install
 RUN git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 COPY vimrc /root/.vimrc
 COPY bashrc /root/.bashrc
+RUN vim +PluginInstall +qall
 
 WORKDIR /root
 

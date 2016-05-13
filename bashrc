@@ -99,4 +99,4 @@ fi
 #fi
 
 #Install vim plugins with vundle
-vim +PluginInstall +qall
+#vim +PluginInstall +qall
