@@ -5,8 +5,6 @@ RUN apt-get install -y python python-dev python3 python3-dev git build-essential
 RUN pip install --upgrade pip
 RUN pip install virtualenv flake8
 
-RUN  git config --global user.email "seb0del@gmail.com" && git config --global user.name "Sebastien Delisle"
-
 WORKDIR /tmp
 RUN git clone https://github.com/vim/vim.git
 WORKDIR /tmp/vim/src
@@ -22,4 +20,4 @@ VOLUME /Project
 
 WORKDIR /Project
 
-CMD ["bash"]
+CMD ["/bin/bash"]
