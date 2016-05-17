@@ -16,8 +16,11 @@ COPY inputrc /root/.inputrc
 COPY vimrc /root/.vimrc
 RUN vim +PluginInstall +qall
 
+COPY entrypoint.sh /tmp
+
 VOLUME /Project
+VOLUME /root/.ssh
 
 WORKDIR /Project
 
-CMD ["/bin/bash"]
+ENTRYPOINT ["/tmp/entrypoint.sh"]
