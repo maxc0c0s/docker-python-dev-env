@@ -19,7 +19,7 @@ RUN vim +PluginInstall +qall
 COPY entrypoint.sh /tmp
 
 RUN curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git-completion.bash
-COPY bashrc /root/.bashrc
+RUN echo ". /etc/bash_completion.d/git-completion.bash" >> /root/.bashrc
 
 VOLUME /Project
 VOLUME /root/.ssh
