@@ -26,4 +26,6 @@ VOLUME /root/.ssh
 
 WORKDIR /Project
 
+RUN ln -s /usr/local/bin/vim  /usr/local/bin/vi
+
 ENTRYPOINT ["/tmp/entrypoint.sh"]
