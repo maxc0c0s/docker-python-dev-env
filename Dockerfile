@@ -1,7 +1,7 @@
 FROM ubuntu:16.04
 
 RUN apt-get update
-RUN apt-get install -y python python-dev python3 python3-dev git build-essential make ncurses-dev python-pip byobu
+RUN apt-get install -y python python-dev python3 python3-dev git build-essential make ncurses-dev python-pip byobu curl
 RUN pip install --upgrade pip
 RUN pip install virtualenv flake8
 
@@ -18,9 +18,14 @@ RUN vim +PluginInstall +qall
 
 COPY entrypoint.sh /tmp
 
+RUN curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git-completion.bash
+RUN echo ". /etc/bash_completion.d/git-completion.bash" >> /root/.bashrc
+
 VOLUME /Project
 VOLUME /root/.ssh
 
 WORKDIR /Project
+
+RUN ln -s /usr/local/bin/vim  /usr/local/bin/vi
 
 ENTRYPOINT ["/tmp/entrypoint.sh"]
