@@ -12,5 +12,8 @@ fi
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"
 
+#. /usr/local/bin/virtualenvwrapper.sh
+mkvirtualenv -a $(pwd) -p python3 project-env
+
 exec $@
 byobu
