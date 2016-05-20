@@ -38,4 +38,4 @@ while getopts $OPTSTRING opt; do
 done
 
 HOST_FOLDER="$(pwd)"
-docker run -ti --rm -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL" -v ${HOME}/.ssh:/root/.ssh -v ${HOST_FOLDER}:/Project python-dev-env
+docker run -ti --rm -e GIT_NAME="$GIT_NAME" -e GIT_EMAIL="$GIT_EMAIL" -v ${HOME}/.ssh:/root/.ssh -v ${HOST_FOLDER}:/Project maxc0c0s/python-dev-env
