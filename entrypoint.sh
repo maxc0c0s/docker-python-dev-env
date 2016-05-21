@@ -12,9 +12,5 @@ fi
 git config --global user.email "${GIT_EMAIL}"
 git config --global user.name "${GIT_NAME}"
 
-source /usr/local/bin/virtualenvwrapper.sh
-virtualenv ~/.virtualenvs/Project
-setvirtualenvproject /root/.virtualenvs/Project /Project
-
 exec $@
 byobu
