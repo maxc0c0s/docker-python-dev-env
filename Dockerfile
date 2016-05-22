@@ -26,10 +26,10 @@ RUN echo ". /etc/bash_completion.d/git-completion.bash" >> /root/.bashrc
 RUN echo "alias activate-project-virtualenv-27='. \$(pwd)/.tox/py27/bin/activate'" >> /root/.bashrc
 RUN echo "alias activate-project-virtualenv-35='. \$(pwd)/.tox/py35/bin/activate'" >> /root/.bashrc
 
-VOLUME /Project
+VOLUME /Projects
 VOLUME /root/.ssh
 
-WORKDIR /Project
+WORKDIR /Projects
 
 COPY entrypoint.sh /tmp
 ENTRYPOINT  ["/tmp/entrypoint.sh"]
