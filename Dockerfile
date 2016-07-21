@@ -1,5 +1,8 @@
 FROM ubuntu:16.04
 
+ENV CUSTOM_SCRIPTS_DIR=/custom-scripts.d
+ENV PROJECT_DIR=/Projects
+
 # Dependencies
 RUN apt-get update
 RUN apt-get install -y python python-dev python3 python3-dev git build-essential make ncurses-dev python-pip byobu curl
@@ -19,12 +22,14 @@ COPY vimrc /root/.vimrc
 RUN vim +PluginInstall +qall
 RUN ln -s /usr/local/bin/vim  /usr/local/bin/vi
 
-# Git autocomplete
-RUN curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git-completion.bash
-RUN echo ". /etc/bash_completion.d/git-completion.bash" >> /root/.bashrc
-
 RUN echo "alias activate-project-virtualenv-27='. \$(pwd)/.tox/py27/bin/activate'" >> /root/.bashrc
 RUN echo "alias activate-project-virtualenv-35='. \$(pwd)/.tox/py35/bin/activate'" >> /root/.bashrc
 
-COPY entrypoint.sh /tmp
-ENTRYPOINT  ["/tmp/entrypoint.sh"]
+RUN mkdir -p $CUSTOM_SCRIPTS_DIR
+RUN mkdir -p $PROJECT_DIR
+VOLUME $CUSTOM_SCRIPTS_DIR
+VOLUME $PROJECT_DIR
+WORKDIR $PROJECT_DIR
+
+COPY entrypoint.sh /usr/local/bin
+ENTRYPOINT  ["/bin/bash", "entrypoint.sh"]
