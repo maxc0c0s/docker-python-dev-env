@@ -1,13 +1,14 @@
 FROM ubuntu:16.04
 
 ENV CUSTOM_SCRIPTS_DIR=/custom-scripts.d
-ENV PROJECT_DIR=/Projects
+ENV PROJECT_HOME=/Projects
+ENV WORKON_HOME=/.virtualenvs
 
 # Dependencies
 RUN apt-get update
 RUN apt-get install -y python python-dev python3 python3-dev git build-essential make ncurses-dev python-pip byobu curl
 RUN pip install --upgrade pip
-RUN pip install tox flake8
+RUN pip install tox flake8 virtualenvwrapper
 
 # Vim
 WORKDIR /tmp
@@ -26,10 +27,14 @@ RUN echo "alias activate-project-virtualenv-27='. \$(pwd)/.tox/py27/bin/activate
 RUN echo "alias activate-project-virtualenv-35='. \$(pwd)/.tox/py35/bin/activate'" >> /root/.bashrc
 
 RUN mkdir -p $CUSTOM_SCRIPTS_DIR
-RUN mkdir -p $PROJECT_DIR
+RUN mkdir -p $PROJECT_HOME
 VOLUME $CUSTOM_SCRIPTS_DIR
-VOLUME $PROJECT_DIR
-WORKDIR $PROJECT_DIR
+VOLUME $PROJECT_HOME
+WORKDIR $PROJECT_HOME
+
+# Virtualenvwrapper
+RUN mkdir -p $WORKON_HOME
+RUN echo "source /usr/local/bin/virtualenvwrapper.sh" >> /root/.bashrc
 
 COPY entrypoint.sh /usr/local/bin
 ENTRYPOINT  ["/bin/bash", "entrypoint.sh"]
