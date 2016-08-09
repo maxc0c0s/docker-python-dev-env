@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM python:latest
 
 ENV CUSTOM_SCRIPTS_DIR=/custom-scripts.d
 ENV PROJECT_HOME=/Projects
@@ -6,7 +6,7 @@ ENV WORKON_HOME=/.virtualenvs
 
 # Dependencies
 RUN apt-get update
-RUN apt-get install -y python python-dev python3 python3-dev git build-essential make ncurses-dev python-pip byobu curl
+RUN apt-get install -y python python-dev python3 python3-dev git build-essential make ncurses-dev python-pip byobu curl, less, man
 RUN pip install --upgrade pip
 RUN pip install tox flake8 virtualenvwrapper
 
