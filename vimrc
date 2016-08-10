@@ -26,16 +26,6 @@ set backspace=2
 " Line numbering
 set nu
 
-"python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-  project_base_dir = os.environ['VIRTUAL_ENV']
-  activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-  execfile(activate_this, dict(__file__=activate_this))
-EOF
-
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -61,7 +51,7 @@ highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
 " Auto completion
-Plugin 'davidhalter/jedi-vim'
+Bundle 'Valloric/YouCompleteMe'
 
 " Syntax Checking/Highlighting
 Plugin 'scrooloose/syntastic'

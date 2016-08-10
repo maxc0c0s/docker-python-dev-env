@@ -6,9 +6,9 @@ ENV WORKON_HOME=/.virtualenvs
 
 # Dependencies
 RUN apt-get update
-RUN apt-get install -y python python-dev python3 python3-dev git build-essential make ncurses-dev python-pip byobu curl less man
+RUN apt-get install -y python python-dev python3 python3-dev git build-essential cmake make ncurses-dev python-pip byobu curl less man
 RUN pip install --upgrade pip
-RUN pip install tox flake8 virtualenvwrapper
+RUN pip install tox flake8 virtualenvwrapper jedi
 
 # Vim
 WORKDIR /tmp
@@ -22,6 +22,8 @@ COPY inputrc /root/.inputrc
 COPY vimrc /root/.vimrc
 RUN vim +PluginInstall +qall
 RUN ln -s /usr/local/bin/vim  /usr/local/bin/vi
+WORKDIR /root/.vim/bundle/YouCompleteMe
+RUN ./install.py
 
 RUN echo "alias activate-project-virtualenv-27='. \$(pwd)/.tox/py27/bin/activate'" >> /root/.bashrc
 RUN echo "alias activate-project-virtualenv-35='. \$(pwd)/.tox/py35/bin/activate'" >> /root/.bashrc
