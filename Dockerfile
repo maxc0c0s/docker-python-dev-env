@@ -3,6 +3,7 @@ FROM python:latest
 ENV CUSTOM_SCRIPTS_DIR=/custom-scripts.d
 ENV PROJECT_HOME=/Projects
 ENV WORKON_HOME=/.virtualenvs
+ENV EDITOR=vim
 
 # Dependencies
 RUN apt-get update
